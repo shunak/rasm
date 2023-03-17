@@ -5,7 +5,7 @@ fn main() {
     let args: Vec<String> = env::args().collect();
 
     if args.len() != 2 {
-        eprintln!("引数の個数が正しくありません");
+        eprintln!("Error: Incorrect number of arguments.");
         process::exit(1);
     }
 
