@@ -11,6 +11,11 @@ fn main() {
 
     let num: i32 = args[1].parse().unwrap();
 
-    println!("{}", num);
+    println!(".intel_syntax noprefix");
+    println!(".globl _main");
+    println!("_main:");
+    println!(" mov rax, {}", num);
+    println!(" ret");
+
 }
 
