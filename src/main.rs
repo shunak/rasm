@@ -16,6 +16,5 @@ fn main() {
     println!("_main:");
     println!(" mov rax, {}", num);
     println!(" ret");
-
 }
 
