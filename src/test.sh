@@ -3,9 +3,9 @@ assert() {
   expected="$1"
   input="$2"
 
-  /Users/syu/tcbr/src/main "$input" > tmp.s
+  /src/main "$input" > tmp.s
   cc -o tmp tmp.s
-  /Users/syu/tcbr/src/tmp
+  ./tmp
   actual="$?"
 
   if [ "$actual" = "$expected" ]; then
@@ -16,7 +16,7 @@ assert() {
   fi
 }
 
-assert 0 0
-assert 42 42
+assert 1 1
+assert 100 100
 
 echo OK
