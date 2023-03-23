@@ -12,8 +12,8 @@ fn main() {
     let num: i32 = args[1].parse().unwrap();
 
     println!(".intel_syntax noprefix");
-    println!(".globl _main");
-    println!("_main:");
+    println!(".globl main");
+    println!("main:");
     println!(" mov rax, {}", num);
     println!(" ret");
 }
