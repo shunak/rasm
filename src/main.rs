@@ -1,4 +1,63 @@
 use std::env;
+use std::io::Write;
+use std::fmt;
+use std::boxed::Box;
+
+
+enum TokenKind {
+    TK_RESERVRD,
+    TK_NUM,
+    TK_EOF,
+}
+
+struct Token {
+    kind: TokenKind, // Token type
+    next: Option<Box<Token>>, // Next input token by using Box(Smart pointer which indicates Heap allocated memory)
+    val: i32, // Case, kind is number, that value.
+    str: String, // Token string
+}
+
+let token: Option<Box<Token>> = None;
+
+// Error Reporting
+fn error(fmt: fmt::Arguments) -> ! { // "!" indicates this func never returns correct state.
+    let mut stderr = std::io::stderr();
+    writeln!(&mut stderr, "{}", fmt).expect("Error writing to stderr"); // macro writeln! which
+                                                                        // implements
+                                                                        // std::fmt::Write trait
+    std::process::exit(1);
+}
+
+// When next token is expected symbol, read one token, else report error.
+fn consume(op: char, token: &mut Token) -> bool {
+    if token.kind != TokenKind::TK_RESERVRD || token.str.chars().next() != Some(op) {
+        false;
+    }
+    token = &mut token.next;
+    true;
+}
+
+// When next token is expected token, read on token, else report error
+fn expect(op: char){
+    if token.kind != TokenKind::TK_RESERVRD || token.str.chars().next() != Some(op){
+        error(op);
+    }
+    token = &mut token.next;
+}
+
+fn expect_number() -> i32{
+    if token.kind != TokenKind::TK_NUM {
+        error("Not a number.");
+    }
+    let val = token.val;
+    token = &mut token.next;
+    val;
+}
+
+
+
+
+
 
 fn main() {
     let args: Vec<String> = env::args().collect();

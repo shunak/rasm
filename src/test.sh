@@ -17,7 +17,7 @@ assert() {
 }
 
 assert 1 1
-assert 100 100
+assert 256 256
 assert 21 "5+20-4"
 
 echo OK
